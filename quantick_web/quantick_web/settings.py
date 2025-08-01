@@ -117,8 +117,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_URL = 'static/'  # URL prefix for static files
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # Additional directories to look for static files (deveopment only)
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # Static files will be collected here in production
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",  # search for static files in the directories listed in STATICFILES_DIRS
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",  # search from static directories in each installed app
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
